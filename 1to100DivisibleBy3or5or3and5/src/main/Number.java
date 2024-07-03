@@ -1,30 +1,33 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class Number {
 
 	private int value; // Integer Wert der Zahl
+	ArrayList<String> validDivisors; // ArrayList implementiert eine Collection
+	                                 // flexibler Größe für passende Divisoren
 	private String displayLabel; // Assoziierter String zur Darstellung im GUI
 
-	public Number(int value) {
+	public Number(int value, int[] divisors) { // Divisoren können in 
+											   // gewünschter Reihenfolge
+		                                       // im String übergeben werden
 
 		this.value = value;
-		if (this.value % 15 == 0) { // Gegeben zwei Teilerfremden Zahlen als
-									// Divisoren lässt sich die Teilbarkeit des
-									// Dividenden mit dem Produkt beider
-									// Divisioren ermitteln.
-			                        // -> Spart eine if-Abfrage
-									
-			this.displayLabel = DivisibleStrings.DIVISBLE_BY_3_AND_5.toString();
-		} else if (this.value % 5 == 0) {
-			this.displayLabel = DivisibleStrings.DIVISIBLE_BY_5.toString();
-		} else if (this.value % 3 == 0) {
-			this.displayLabel = DivisibleStrings.DIVSIBLE_BY_3.toString();
-		} else {
-			this.displayLabel = Integer.toString(this.value);
-		} 
-		
-		// Ermittelt Teilbarkeit des Ganzzahlwertes nach Anforderung und 
-		// initialisiert das passende String Objekt zur Darstellung.
+		this.validDivisors = new ArrayList<String>(); // Initialisiere ArrayList
+		this.displayLabel = Integer.toString(this.value);
+		for (int iteration = 0; iteration < divisors.length; iteration++) {
+			// Ermittelt Teilbarkeit des Wertes gegeben gewünschten Divisioren 
+			if (this.value % divisors[iteration] == 0) { 
+				this.validDivisors.add(String.valueOf(divisors[iteration]));
+			}
+		}
+		if (!this.validDivisors.isEmpty()) {
+			// Baue den String auf, falls es Divisoren gibt
+			this.displayLabel = this.validDivisors.stream()
+					.collect(Collectors.joining("und")) + "teilbar";
+		}
 	}
 
 	public int getValue() {

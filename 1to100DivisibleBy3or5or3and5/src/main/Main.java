@@ -39,9 +39,11 @@ public class Main {
 	und dafür Java Swing in diesem Projekt verwendet. */
 
 	public static void main(String[] args) {
-		// Erstelle ein Array aus Zahlenobjekten von 1 bis 100 //
-		NumberFactory1toN numberFactory = new NumberFactory1toN(100);
-		// Zeige die Zahlenobjekte in einer Benutzeroberfläche an //
-		new GUI(numberFactory.getNumberObjects());
+		int[] divisors = new int[] {3, 5}; // Divisoren
+		Number[] numbers = new Number[100]; // Höchstzahl
+		for (int iteration = 1; iteration <= numbers.length; iteration++) {
+			numbers[iteration - 1] = new Number(iteration, divisors);
+		}
+		new GUI(numbers);
 	}
 }

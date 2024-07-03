@@ -56,16 +56,19 @@ public class GUI {
 			                                      // JLabels auf das
 			                                      // JPanel
 			if (label.getText()
-					.equals(DivisibleStrings.DIVISBLE_BY_3_AND_5.toString())) {
+					.equals("3und5teilbar")) {
 				panel.setBackground(this.colorAquamarineCyan);
 				label.setForeground(Color.WHITE);
 			} else if (label.getText()
-					.equals(DivisibleStrings.DIVISIBLE_BY_5.toString())) {
+					.equals("5teilbar")) {
 				panel.setBackground(this.colorSkyBlue);
 				label.setForeground(Color.WHITE);
 			} else if (label.getText()
-					.equals(DivisibleStrings.DIVSIBLE_BY_3.toString())) {
+					.equals("3teilbar")) {
 				panel.setBackground(this.colorCeladonGreen);
+				label.setForeground(Color.WHITE);
+			} else if (label.getText().contains("teilbar")) {
+				panel.setBackground(Color.RED);
 				label.setForeground(Color.WHITE);
 			} else {
 				panel.setBackground(this.colorLightGray);
